@@ -6,7 +6,7 @@
 /*   By: alegent <alegent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 10:59:47 by alegent           #+#    #+#             */
-/*   Updated: 2017/05/18 13:47:02 by alegent          ###   ########.fr       */
+/*   Updated: 2017/05/18 14:08:28 by alegent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ struct					s_range
 t_range					range(size_t start, size_t end);
 
 /*
-** sort function take the two void * being tested by block sort.
+** sorted function take the two void * being tested by block sort.
 ** It has to return true parameter are correctly order, false otherwise.
 ** Example:
-**		sort(void *x, void *y)
+**		sorted(void *x, void *y)
 **		{
 **			int _x = *(int *)x;
 **			int _y = *(int *)y;
@@ -44,7 +44,7 @@ t_range					range(size_t start, size_t end);
 **			return ((_x <= _y) ? true : false);
 **		}
 **
-**		sort(void *x, void *y)
+**		sorted(void *x, void *y)
 **		{
 **			Person *_x = (Person *)x;
 **			Person *_y = (Person *)y;
@@ -52,7 +52,7 @@ t_range					range(size_t start, size_t end);
 **			return ((_x->age <= _y->age) ? true : false);
 **		}
 **
-**		sort(void *x, void *b)
+**		sorted(void *x, void *b)
 **		{
 **			char *_x = (char *)x;
 **			char *_y = (char *)y;
@@ -61,10 +61,10 @@ t_range					range(size_t start, size_t end);
 **		}
 */
 
-void					bsort(void **array, size_t size, t_bool (*sort)(void *, void *));
+void					bsort(void **array, size_t size, t_bool (*sorted)(void *, void *));
 size_t					floor_power_of_two(size_t x);
 void					rotate(void **array, size_t amount, t_range range);
 void					merge(void **array, t_range a, t_range b);
-void					insertion_sort(void **array, t_range range, t_bool (*f)(void *, void *));
+void					insertion_sort(void **array, t_range range, t_bool (*sorted)(void *, void *));
 
 #endif

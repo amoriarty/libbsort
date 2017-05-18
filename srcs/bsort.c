@@ -6,7 +6,7 @@
 /*   By: alegent <alegent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 10:57:41 by alegent           #+#    #+#             */
-/*   Updated: 2017/05/18 13:47:49 by alegent          ###   ########.fr       */
+/*   Updated: 2017/05/18 14:05:37 by alegent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // DEBUG
 #include <stdio.h>
 
-void				bsort(void **array, size_t size, t_bool (*sort)(void *, void *))
+void				bsort(void **array, size_t size, t_bool (*sorted)(void *, void *))
 {
 	size_t			power;
 	size_t			scale;
@@ -30,13 +30,13 @@ void				bsort(void **array, size_t size, t_bool (*sort)(void *, void *))
 	length = 16;
 	power = floor_power_of_two(size);
 	scale = size / power;
-	if (!sort)
+	if (!sorted)
 		return ;
 	while (_merge < power)
 	{
 		start = _merge * scale;
 		end = start + 16 * scale;
-		insertion_sort(array, range(start, end), sort);
+		insertion_sort(array, range(start, end), sorted);
 		_merge += 16;
 	}
 	while (length < power)
@@ -48,9 +48,9 @@ void				bsort(void **array, size_t size, t_bool (*sort)(void *, void *))
 			mid = (_merge + length) * scale;
 			end = (_merge + length * 2) * scale;
 			// !!! end - 1 may be wrong and will have to be remplace by just end
-			if (sort(array[start], array[end - 1]) == false) // if (array[end - 1] < array[start])
+			if (sorted(array[start], array[end - 1]) == false) // if (array[end - 1] < array[start])
 				rotate(array, mid - start, range(start, end));
-			else if (sort(array[mid - 1], array[mid]) == false) // else if (array[mid - 1] > array[mid])
+			else if (sorted(array[mid - 1], array[mid]) == false) // else if (array[mid - 1] > array[mid])
 				merge(array, range(start, mid), range(mid, end));
 			_merge += length * 2;
 		}
