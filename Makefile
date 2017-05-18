@@ -6,7 +6,7 @@
 #    By: alegent <alegent@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/22 10:22:08 by alegent           #+#    #+#              #
-#    Updated: 2017/05/18 12:06:18 by alegent          ###   ########.fr        #
+#    Updated: 2017/05/18 12:19:36 by alegent          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,10 @@ NAME= libbsort.a
 SRC_PATH= srcs/
 SRC_NAME= bsort.c \
 			floor_power_of_two.c \
-			range.c
+			range.c \
+			merge.c \
+			rotate.c \
+			insertion_sort.c
 
 SRC= $(addprefix $(SRC_PATH), $(SRC_NAME))
 
