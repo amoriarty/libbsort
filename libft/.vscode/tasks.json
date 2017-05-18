@@ -1,0 +1,40 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "0.1.0",
+	"command": "make",
+	"isShellCommand": true,
+	"args": [],
+	"showOutput": "always",
+	"tasks": [
+		{
+			"taskName": "all",
+			"isBuildCommand": true
+		},
+		{
+			"taskName": "clean",
+			"isBuildCommand": true,
+			"args": [ "clean" ]
+		},
+		{
+			"taskName": "fclean",
+			"isBuildCommand": true,
+			"args": [ "fclean" ]
+		},
+		{
+			"taskName": "re",
+			"isBuildCommand": true,
+			"args": [ "re" ]
+		},
+		{
+			"taskName": "libft.a",
+			"isBuildCommand": true,
+			"args": [ "libft.a" ]
+		},
+		{
+			"taskName": "main",
+			"isBuildCommand": true,
+			"args": [ "main" ]
+		}
+	]
+}
