@@ -6,7 +6,7 @@
 /*   By: alegent <alegent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 10:59:47 by alegent           #+#    #+#             */
-/*   Updated: 2017/05/18 12:25:42 by alegent          ###   ########.fr       */
+/*   Updated: 2017/05/18 13:47:02 by alegent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,35 @@ struct					s_range
 t_range					range(size_t start, size_t end);
 
 /*
-** f function take the two void * being tested by block sort.
+** sort function take the two void * being tested by block sort.
 ** It has to return true parameter are correctly order, false otherwise.
 ** Example:
-**		f(int *x, int *y) {
-**			return ((x <= y) ? true : false);
+**		sort(void *x, void *y)
+**		{
+**			int _x = *(int *)x;
+**			int _y = *(int *)y;
+**
+**			return ((_x <= _y) ? true : false);
 **		}
-**		f(Person *x, Person *y) {
-**			return ((x->age <= y) ? true : false);
+**
+**		sort(void *x, void *y)
+**		{
+**			Person *_x = (Person *)x;
+**			Person *_y = (Person *)y;
+**
+**			return ((_x->age <= _y->age) ? true : false);
+**		}
+**
+**		sort(void *x, void *b)
+**		{
+**			char *_x = (char *)x;
+**			char *_y = (char *)y;
+**
+**			return ((strcmp(_x, _y) <= 0) ? true : false);
 **		}
 */
 
-void					bsort(void **array, size_t size, t_bool (*f)(void *, void *));
+void					bsort(void **array, size_t size, t_bool (*sort)(void *, void *));
 size_t					floor_power_of_two(size_t x);
 void					rotate(void **array, size_t amount, t_range range);
 void					merge(void **array, t_range a, t_range b);
