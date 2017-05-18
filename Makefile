@@ -6,7 +6,7 @@
 #    By: alegent <alegent@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/22 10:22:08 by alegent           #+#    #+#              #
-#    Updated: 2017/05/18 12:19:36 by alegent          ###   ########.fr        #
+#    Updated: 2017/05/18 16:00:19 by alegent          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ SRC_NAME= bsort.c \
 			range.c \
 			merge.c \
 			rotate.c \
-			insertion_sort.c
+			insertion_sort.c \
+			slide_data.c \
+			new_array.c
 
 SRC= $(addprefix $(SRC_PATH), $(SRC_NAME))
 

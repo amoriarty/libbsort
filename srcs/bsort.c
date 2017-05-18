@@ -6,15 +6,11 @@
 /*   By: alegent <alegent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 10:57:41 by alegent           #+#    #+#             */
-/*   Updated: 2017/05/18 14:05:37 by alegent          ###   ########.fr       */
+/*   Updated: 2017/05/18 15:55:01 by alegent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsort.h"
-
-
-// DEBUG
-#include <stdio.h>
 
 void				bsort(void **array, size_t size, t_bool (*sorted)(void *, void *))
 {
@@ -32,6 +28,11 @@ void				bsort(void **array, size_t size, t_bool (*sorted)(void *, void *))
 	scale = size / power;
 	if (!sorted)
 		return ;
+	if (size < 16)
+	{
+		insertion_sort(array, range(0, size), sorted);
+		return ;
+	}
 	while (_merge < power)
 	{
 		start = _merge * scale;
@@ -56,11 +57,4 @@ void				bsort(void **array, size_t size, t_bool (*sorted)(void *, void *))
 		}
 		length += length;
 	}
-
-	// DEBUG LOOP
-	size_t			i;
-	i = -1;
-	while (++i < size)
-		ft_putendl(array[i]);
-	// END DEBUG LOOP
 }

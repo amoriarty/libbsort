@@ -6,30 +6,16 @@
 /*   By: alegent <alegent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 12:17:27 by alegent           #+#    #+#             */
-/*   Updated: 2017/05/18 15:32:58 by alegent          ###   ########.fr       */
+/*   Updated: 2017/05/18 15:59:46 by alegent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsort.h"
 
-static void			**new_array(size_t size)
-{
-	size_t			i;
-	void			**self;
-
-	i = -1;
-	if (!(self = (void **)malloc(sizeof(void *) * size)))
-		return (NULL);
-	while (++i < size)
-		self[i] = NULL;
-	return (self);
-}
-
 static void			sort(void **array, void **sarray, t_range range, t_bool (*sorted)(void *, void *))
 {
 	size_t			i;
 	size_t			x;
-	size_t			y;
 
 	i = range.start - 1;
 	while (++i < range.end)
@@ -41,14 +27,7 @@ static void			sort(void **array, void **sarray, t_range range, t_bool (*sorted)(
 			sarray[x] = array[i];
 		else
 		{
-			y = 0;
-			while (y < range.end - range.start && sarray[y])
-				y += 1;
-			while (y > x)
-			{
-				sarray[y] = sarray[y - 1];
-				y -= 1;
-			}
+			slide_data(sarray, x, range.end - range.start);
 			sarray[x] = array[i];
 		}
 	}
