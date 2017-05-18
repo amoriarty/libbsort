@@ -6,7 +6,7 @@
 #    By: alegent <alegent@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/22 10:22:08 by alegent           #+#    #+#              #
-#    Updated: 2017/05/18 11:13:02 by alegent          ###   ########.fr        #
+#    Updated: 2017/05/18 12:06:18 by alegent          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,9 @@ CC= clang -Wall -Wextra -Werror -g
 NAME= libbsort.a
 
 SRC_PATH= srcs/
-SRC_NAME= bsort.c
+SRC_NAME= bsort.c \
+			floor_power_of_two.c \
+			range.c
 
 SRC= $(addprefix $(SRC_PATH), $(SRC_NAME))
 
@@ -28,11 +30,14 @@ OBJ= $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 
 all: $(NAME)
 
-main: $(NAME)
-	@make -C libft
-	$(CC) $(INC) $(LIB) $(OBJ) main.c -o main
+main: $(NAME) main.o
+	$(CC) $(INC) $(LIB) $(OBJ) main.o -o main
+
+main.o: main.c
+	$(CC) $(INC) -o $@ -c $<
 
 $(NAME): $(OBJ)
+	@make -C libft
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo "$(NAME) has been created."

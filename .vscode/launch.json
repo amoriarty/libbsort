@@ -10,6 +10,13 @@
 			"cwd": "${workspaceRoot}",
 			"environment": [],
 			"externalConsole": false,
+			"args": [
+				"b",
+				"a",
+				"z",
+				"c",
+				"d"
+			],
 			"preLaunchTask": "main",
 			"linux": {
 				"MIMode": "gdb",
