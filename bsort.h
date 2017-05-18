@@ -6,7 +6,7 @@
 /*   By: alegent <alegent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 10:59:47 by alegent           #+#    #+#             */
-/*   Updated: 2017/05/18 16:00:24 by alegent          ###   ########.fr       */
+/*   Updated: 2017/05/18 16:15:13 by alegent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,5 @@ size_t					floor_power_of_two(size_t x);
 void					rotate(void **array, size_t amount, t_range range);
 void					merge(void **array, t_range a, t_range b);
 void					insertion_sort(void **array, t_range range, t_bool (*sorted)(void *, void *));
-void					slide_data(void **array, size_t index, size_t size);
-void					**new_array(size_t size);
 
 #endif
