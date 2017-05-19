@@ -6,7 +6,7 @@
 /*   By: alegent <alegent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 10:57:41 by alegent           #+#    #+#             */
-/*   Updated: 2017/05/18 15:55:01 by alegent          ###   ########.fr       */
+/*   Updated: 2017/05/18 16:23:29 by alegent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,11 @@ void				bsort(void **array, size_t size, t_bool (*sorted)(void *, void *))
 	scale = size / power;
 	if (!sorted)
 		return ;
-	if (size < 16)
-	{
-		insertion_sort(array, range(0, size), sorted);
-		return ;
-	}
 	while (_merge < power)
 	{
 		start = _merge * scale;
 		end = start + 16 * scale;
+		end = (end > size) ? size : end;
 		insertion_sort(array, range(start, end), sorted);
 		_merge += 16;
 	}

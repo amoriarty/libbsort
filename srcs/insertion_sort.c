@@ -6,7 +6,7 @@
 /*   By: alegent <alegent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 12:17:27 by alegent           #+#    #+#             */
-/*   Updated: 2017/05/18 16:14:39 by alegent          ###   ########.fr       */
+/*   Updated: 2017/05/18 16:19:02 by alegent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@ void				insertion_sort(void **array, t_range range, t_bool (*sorted)(void *, voi
 {
 	size_t			x;
 	size_t			y;
+	size_t			size;
 	void			*swap;
 
 	x = 0;
-	while (++x < range.end - range.start)
+	size = range.end - range.start;
+	if (size <= 1)
+		return ;
+	while (++x < size)
 	{
 		y = x - 1;
 		swap = array[x];
