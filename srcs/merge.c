@@ -6,74 +6,53 @@
 /*   By: alegent <alegent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 12:15:37 by alegent           #+#    #+#             */
-/*   Updated: 2017/05/22 16:34:22 by alegent          ###   ########.fr       */
+/*   Updated: 2017/05/22 17:33:46 by alegent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsort.h"
 
-static void			copy_array(void **origin, void **dst, size_t size)
-{
-	size_t			i;
-
-	i = -1;
-	while (++i < size)
-		dst[i] = origin[i];
-}
-
-static void			top_down_merge(void **array, void **work, t_range r, t_bool (*sorted)(void *, void *))
+void				mrg(void **array, size_t n, size_t m, t_bool (*sorted)(void *, void *))
 {
 	size_t			i;
 	size_t			j;
 	size_t			k;
-	size_t			middle;
+	void			**final;
 
-	i = r.start;
-	j = ((r.end - r.start) / 2) + r.start;
+	i = 0;
+	j = m;
 	k = 0;
-	middle = j;
-	while (k < r.end - r.start)
+	if (!(final = (void **)malloc(sizeof(void *) * n)))
+		return ;
+	while (k < n)
 	{
-		if (i < middle && (j >= r.end || sorted(array[i], array[j]) == true))
-		{
-			work[k] = array[i];
-			i += 1;
-		}
+		if (j == n)
+			final[k] = array[i++];
+		else if (i == m)
+			final[k] = array[j++];
+		else if (sorted(array[j], array[i]) == true)
+			final[k] = array[j++];
 		else
-		{
-			work[k] = array[j];
-			j += 1;
-		}
+			final[k] = array[i++];
 		k += 1;
 	}
+	i = 0;
+	while (i < n)
+	{
+		array[i] = final[i];
+		i += 1;
+	}
+	free(final);
 }
 
-static void			top_down(void **array, void **work, t_range r, t_bool (*sorted)(void *, void *))
+void				merge(void **array, size_t n, t_bool (*sorted)(void *, void *))
 {
 	size_t			middle;
 
-	if (r.end - r.start < 2)
+	if (n < 2)
 		return ;
-	middle = ((r.end - r.start) / 2) + r.start;
-	top_down(array, work, range(r.start, middle), sorted);
-	top_down(array, work, range(middle, r.end), sorted);
-	top_down_merge(array, work, r, sorted);
-}
-
-// ERROR STILL OCCURES IN MERGE SORT.
-void				merge(void **array, t_range a, t_range b, t_bool (*sorted)(void *, void *))
-{
-	void			**_a;
-	void			**_b;
-
-	if (!(_a = (void **)malloc(sizeof(void *) * (a.end - a.start))))
-		return ;
-	if (!(_b = (void **)malloc(sizeof(void *) * (b.end - b.start))))
-		return ;
-	top_down(array, _a, a, sorted);
-	top_down(array, _b, b, sorted);
-	copy_array(_a, array + a.start, a.end - b.start);
-	copy_array(_b, array + b.start, b.end - b.start);
-	free(_a);
-	free(_b);
+	middle = n / 2;
+	merge(array, middle, sorted);
+	merge(array + middle, n - middle, sorted);
+	mrg(array, n, middle, sorted);
 }

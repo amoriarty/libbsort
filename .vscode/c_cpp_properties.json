@@ -3,6 +3,8 @@
         {
             "name": "Mac",
             "includePath": [
+				"${workspaceRoot}/srcs",
+				"${workspaceRoot}/libft",
                 "/usr/include",
                 "/usr/local/include",
                 "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
