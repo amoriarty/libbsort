@@ -6,7 +6,7 @@
 /*   By: alegent <alegent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 10:57:41 by alegent           #+#    #+#             */
-/*   Updated: 2017/05/18 16:23:29 by alegent          ###   ########.fr       */
+/*   Updated: 2017/05/22 16:33:23 by alegent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,10 @@ void				bsort(void **array, size_t size, t_bool (*sorted)(void *, void *))
 			start = _merge * scale;
 			mid = (_merge + length) * scale;
 			end = (_merge + length * 2) * scale;
-			// !!! end - 1 may be wrong and will have to be remplace by just end
-			if (sorted(array[start], array[end - 1]) == false) // if (array[end - 1] < array[start])
+			if (sorted(array[start], array[end - 1]) == false)
 				rotate(array, mid - start, range(start, end));
-			else if (sorted(array[mid - 1], array[mid]) == false) // else if (array[mid - 1] > array[mid])
-				merge(array, range(start, mid), range(mid, end));
+			else if (sorted(array[mid - 1], array[mid]) == false)
+				merge(array, range(start, mid), range(mid, end), sorted);
 			_merge += length * 2;
 		}
 		length += length;
