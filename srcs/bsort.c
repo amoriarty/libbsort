@@ -6,7 +6,7 @@
 /*   By: alegent <alegent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 10:57:41 by alegent           #+#    #+#             */
-/*   Updated: 2017/05/22 16:33:23 by alegent          ###   ########.fr       */
+/*   Updated: 2017/05/23 13:13:33 by alegent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void				bsort(void **array, size_t size, t_bool (*sorted)(void *, void *))
 			if (sorted(array[start], array[end - 1]) == false)
 				rotate(array, mid - start, range(start, end));
 			else if (sorted(array[mid - 1], array[mid]) == false)
-				merge(array, range(start, mid), range(mid, end), sorted);
+				merge(array, size, sorted);
 			_merge += length * 2;
 		}
 		length += length;
