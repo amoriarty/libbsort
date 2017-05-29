@@ -6,7 +6,7 @@
 /*   By: alegent <alegent@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 10:57:41 by alegent           #+#    #+#             */
-/*   Updated: 2017/05/23 13:13:33 by alegent          ###   ########.fr       */
+/*   Updated: 2017/05/29 13:35:01 by alegent          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void				bsort(void **array, size_t size, t_bool (*sorted)(void *, void *))
 
 	_merge = 0;
 	length = 16;
+	if (!array || !size)
+		return ;
 	power = floor_power_of_two(size);
 	scale = size / power;
 	if (!sorted)
